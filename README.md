@@ -24,3 +24,24 @@
 1. 系统学习MySql数据库,入门NoSql
 2. 趁着前端内容的学习基础,一定要深入学习Vue.js
 3. 实践和总结前后端分离思想
+
+# npm
+
+**npm的命令参数 : --save -dev和--save的区别 :**
+
+- --save 会把依赖包名称添加到 package.json 的 dependencies 键下，而 --save-dev 会添加到 devDependencies 键下。
+- dependencies 是运行时的依赖，而devDependencies是开发时的依赖。也就是说，采用 --save-dev 安装的包我们发布后是用不到的，只有在开发时用到。采用 --save 安装的包在发布后还会有依赖，例如：axios。如下代码：
+
+```json
+ "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.2.0"
+  }
+```
+
+- 当我们使用npm install 时会下载 dependencies 和 devDependencies 下的模块。使用 npm install -production或者给定NODE_ENV值为production时，就只下载 dependencies 下的模块。
+
