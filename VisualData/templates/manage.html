@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv=”content-type” content=”text/html″ />
+    <title>后台管理员页面</title>
+
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+
+<style>
+
+    table.formdata {
+        border: 1px solid #5F6F7E;
+        border-collapse: collapse;
+        font-family: Arial;
+    }
+
+    table.formdata caption {
+        number-align: left;
+        padding-bottom: 6px;
+    }
+
+    table.formdata th {
+        border: 1px solid #5F6F7E;
+        background-color: #E2E2E2;
+        number-align: left;
+        font-weight: normal;
+        padding: 2px 8px 2px 6px;
+        margin: 0px;
+    }
+
+    table.formdata td {
+        margin: 0px;
+        padding: 0px;
+        border: 1px solid #ABABAB; /* 单元格边框 */
+    }
+
+    table.formdata input {
+        width: 100px;
+        padding: 1px 3px 1px 3px;
+        margin: 0px;
+        border: none; /* 输入框不要边框 */
+        font-family: Arial;
+    }
+
+    .btn {
+        border: 1px solid #0083f2;
+        font-family: Arial;
+    }
+
+
+</style>
+</head>
+<body>
+<form name="data">
+    <table class="formdata">
+        <caption>修改商品信息</caption>
+        <tr>
+            <th></th>
+            <th scope="col">价格</th>
+            <th scope="col">剩余</th>
+            <th scope="col">在售</th>
+            <th scope="col">时间</th>
+        </tr>
+        <tr>
+            <th scope="row">商品A</th>
+            <td id="tdharddisk2005"><input type="number" name="a2" id="a_price" value="1"></td>
+            <td id="tdharddisk2006"><input type="number" name="a3" id="a_number" value={{ msg }}></td>
+            <td id="tdharddisk2007"><input type="number" name="a4" id="a_is_sale"></td>
+            <td id="tdharddisk_S"><input type="date" name="a5" id="a_time"></td>
+        </tr>
+        <tr>
+            <th scope="row">商品B</th>
+            <td id="tdmainboard2005"><input type="number" name="b2" id="b_price"></td>
+            <td id="tdmainboard2006"><input type="number" name="b3" id="b_number"></td>
+            <td id="tdmainboard2007"><input type="number" name="b4" id="b_is_sale"></td>
+            <td id="tdmainboard_S"><input type="date" name="b5" id="b_time"></td>
+        </tr>
+        <tr>
+            <th scope="row">商品C</th>
+            <td id="tdmemory2005"><input type="number" name="c2" id="c_price"></td>
+            <td id="tdmemory2006"><input type="number" name="c3" id="c_number"></td>
+            <td id="tdmemory2007"><input type="number" name="c4" id="c_is_sale"></td>
+            <td id="tdmemory_S"><input type="date" name="c5" id="c_time"></td>
+        </tr>
+        <tr>
+            <th scope="row">商品D</th>
+            <td id="tdcase2005"><input type="number" name="d2" id="d_price"></td>
+            <td id="tdcase2006"><input type="number" name="d3" id="d_number"></td>
+            <td id="tdcase2007"><input type="number" name="d4" id="d_is_sale"></td>
+            <td id="tdcase_S"><input type="date" name="d5" id="d_time"></td>
+        </tr>
+
+        <tr>
+            <th scope="row">商品E</th>
+            <td id="tdcase2005"><input type="number" name="e2" id="e_price"></td>
+            <td id="tdcase2006"><input type="number" name="e3" id="e_number"></td>
+            <td id="tdcase2007"><input type="number" name="e4" id="e_is_sale"></td>
+            <td id="tdcase_S"><input type="date" name="e5" id="e_time"></td>
+        </tr>
+
+    </table>
+
+
+    <p >
+        <input type="button" id="set" class="btn" value="更新">
+    </p>
+    <script type="text/javascript">
+        $('#set').click(function (){
+            data = {}
+            data['A'] = [$('#a_price').val(),$('#a_number').val(),$('#a_is_sale').val(),$('#a_time').val()];
+            data['B'] = [$('#b_price').val(),$('#b_number').val(),$('#b_is_sale').val(),$('#b_time').val()];
+            data['C'] = [$('#c_price').val(),$('#c_number').val(),$('#c_is_sale').val(),$('#c_time').val()];
+            data['D'] = [$('#d_price').val(),$('#d_number').val(),$('#d_is_sale').val(),$('#d_time').val()];
+            data['E'] = [$('#e_price').val(),$('#e_number').val(),$('#e_is_sale').val(),$('#e_time').val()];
+
+
+            var str = JSON.stringify(data);
+            console.log(str)
+
+            $.post('/update/', {'str':str},function(data,status){
+                console.log(data);
+                console.log(status);
+            });
+        });
+
+
+    </script>
+</form>
+</body>
+</body>
+</html>

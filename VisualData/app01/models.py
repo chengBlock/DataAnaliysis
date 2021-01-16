@@ -17,7 +17,7 @@ class Goods(models.Model):
     goods_name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=20,decimal_places=5)
     number = models.IntegerField()
-    is_sale_off = models.BooleanField(default=False)
+    is_sale = models.BooleanField(default=False)
     date = models.DateField()
 
     def __str__(self):
