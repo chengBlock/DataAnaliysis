@@ -24,5 +24,9 @@ urlpatterns = [
     path('register/', views.register),
     path('manage/', views.manage),
     path('update/', views.update),
-
+    path('echarts/', views.echarts),
+    path('getData/', views.getData),
+    path('bar/', views.bar),
+    path('pie/', views.pie),
+    path('line/', views.line),
 ]

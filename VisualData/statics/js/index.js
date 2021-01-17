@@ -847,7 +847,7 @@
     [{ name: "拉萨" }, { name: "哈尔滨", value: 100 }],
     [{ name: "银川" }, { name: "上海", value: 100 }],
     [{ name: "银川" }, { name: "西安", value: 100 }],
-    [{ name: "银川" }, { name: "西宁", value: 100 }]
+    [{ name: "阜阳" }, { name: "西宁", value: 100 }]
   ];
 
   var planePath =

@@ -20,8 +20,7 @@ class Goods(models.Model):
     is_sale = models.BooleanField(default=False)
     date = models.DateField()
 
-    def __str__(self):
-        return str(self.id) + "-" + self.goods_name + "-" +self.date
+
 
 
 class Custom(models.Model):
@@ -31,8 +30,6 @@ class Custom(models.Model):
     address = models.CharField(max_length=100)
     date = models.DateField()
 
-    def __str__(self):
-        return str(self.id) + "-" + self.goods_name + "-" + self.date
 
 
 # 商品A的历史记录，价格，销售量，销售日期

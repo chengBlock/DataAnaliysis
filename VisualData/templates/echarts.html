@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化</title>
+</head>
+
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/jquery.js"></script>
+<body>
+
+<div id="main" style=" width: 600px;height: 300px"></div>
+<input id="bar" type="button" value="柱状图">
+<input id="line" type="button" value="折线图">
+<input id="pie" type="button" value="饼状图">
+<input id="manage" type="button" value="管理员界面" onclick="window.open('/manage/','_self')">
+
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+
+    $.get('/bar/').done(function (data) {
+        console.log(data)
+        myChart.setOption({
+            title: {
+                text: '价格'
+            },
+            tooltip: {},
+            legend: {
+                data: ['价格']
+
+            },
+            xAxis: {
+                data: data.categories
+            },
+            yAxis: {},
+            series: [{
+                name: '价格',
+                type: 'bar',
+                data: data.data
+            }]
+        });
+    });
+    $('#bar').click(function () {
+
+        $.get('/bar/').done(function (data) {
+            console.log(data)
+            myChart.clear()
+            myChart.setOption({
+                title: {
+                    text: '价格'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['价格']
+                },
+                xAxis: {
+                    data: data.categories
+                },
+                yAxis: {},
+                series: [{
+                    name: '价格',
+                    type: 'bar',
+                    data: data.data
+                }]
+            });
+        });
+    })
+
+    $('#line').click(function () {
+        $.get('/line/').done(function (data) {
+            console.log(data)
+
+
+
+            myChart.clear()
+
+            option = {
+                title: {
+                    text: '销量'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['A', 'B', 'C', 'D', 'E']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: data[0].date
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'A',
+                        type: 'line',
+                        stack: 'A',
+                        data: data[0].number
+                    },
+                    {
+                        name: 'B',
+                        type: 'line',
+                        stack: 'B',
+                        data: data[1].number
+                    },
+                    {
+                        name: 'C',
+                        type: 'line',
+                        stack: 'C',
+                        data: data[2].number
+                    },
+                    {
+                        name: 'D',
+                        type: 'line',
+                        stack: 'D',
+                        data: data[3].number
+                    },
+                    {
+                        name: 'E',
+                        type: 'line',
+                        stack: 'E',
+                        data: data[4].number
+                    }
+                ]
+            };
+            console.log(data[4].number)
+            myChart.setOption(option)
+        })
+    })
+
+    $('#pie').click(function () {
+        $.get('/pie/').done(function (data) {
+            console.log(data)
+            myChart.clear() //清空图表
+            option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                title: {
+                    text: '产品销量',
+                    left: 'center'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 10,
+                    data: ['A', 'B', 'C', 'D', 'E']
+                },
+                series: [
+                    {
+                        name: '产品销量',
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: data
+                    }
+                ]
+            };
+
+            myChart.setOption(option)
+        })
+    })
+</script>
+</body>
+</html>
